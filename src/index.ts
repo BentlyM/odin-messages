@@ -1,11 +1,17 @@
 import express from 'express';
 import path from 'path';
 import router from './routes/messages';
+import { logger } from './middleware/logger';
+
+const app = express();
 
 const PORT = +( process.env.PORT || 8080);
 const hostname = '0.0.0.0';
 
-const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(logger);
 
 app.set("./src/views", path.join(__dirname, './src/views'));
 app.set("view engine","ejs");
