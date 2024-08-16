@@ -1,0 +1,21 @@
+<head>
+  <title>Home</title>
+  <link href="/src/public/styles.css" rel="stylesheet">
+</head>
+<body>
+  <span>HomePage</span>
+  <ul>
+    <% messages.forEach((info) => { %> 
+    <li>
+        <%- include('users/user', 
+        {
+            message: info.text,
+            user: info.user,
+            date: info.added
+        }); 
+        %> 
+    </li>
+    <% });%>
+  </ul>
+  <button href="/new">Add New Message</button>
+</body>
